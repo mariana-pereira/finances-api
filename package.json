@@ -38,6 +38,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "ts-jest": "^26.4.4"
+    "pg": "^8.6.0",
+    "ts-jest": "^26.4.4",
+    "typeorm": "^0.2.32"
   }
 }
