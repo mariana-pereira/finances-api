@@ -14,6 +14,12 @@ class User {
   @Column()
   password_hash: string;
 
+  @Column()
+  token: string;
+
+  @CreateDateColumn()
+  token_created_at: Date;
+
   @CreateDateColumn()
   created_at: Date;
 
