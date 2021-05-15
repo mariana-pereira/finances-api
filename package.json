@@ -10,7 +10,8 @@
     "start": "ts-node dist/server.js",
     "test": "jest --noStackTrace --passWithNoTests  --runInBand",
     "test:unit": "npm test -c jest-unit-config.js",
-    "test:integration": "npm test -c jest-integration-config.js"
+    "test:integration": "npm test -c jest-integration-config.js",
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
