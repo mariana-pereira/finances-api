@@ -7,6 +7,6 @@ export default {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>'}),
   preset: 'ts-jest',
   coverageDirectory: 'coverage',
-  collectCoverageFrom: ['**/src/**/*.js', '!**/src/main/**.js'],
+  collectCoverageFrom: ['src/**/*.ts'],
   testEnvironment: "node",
 };
