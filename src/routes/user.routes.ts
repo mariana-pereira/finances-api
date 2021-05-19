@@ -1,13 +1,9 @@
 import { Router } from 'express';
 
+import UserController from '@controllers/UserController';
+
 const usersRouter = Router();
 
-usersRouter.post('/', async (request, response) => {
-  try {
-    return response.send();
-  } catch (error) {
-    return response.status(400).json({ error: error.message });
-  }
-});
+usersRouter.post('/', UserController.store);
 
 export default usersRouter;
