@@ -6,4 +6,6 @@ const usersRouter = Router();
 
 usersRouter.post('/', UserController.store);
 
+usersRouter.get('/:id', UserController.show);
+
 export default usersRouter;
