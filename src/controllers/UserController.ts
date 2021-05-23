@@ -19,7 +19,7 @@ class UserController {
 
       delete user.password_hash;
 
-      return response.status(200).json(user);
+      return response.status(201).json(user);
     } catch (error) {
       return response.status(400).json({ error: error.message });
     }
