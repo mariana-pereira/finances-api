@@ -67,4 +67,20 @@ describe("Users", () => {
 
     expect(compareHash).toBe(true);
   });
+
+  it("should return a user when a valid id is provided", async () => {
+    const usersRepository = connection.getRepository(User);
+
+    const user = usersRepository.create({
+      name: "User Example",
+      email: "user@example.com",
+      password_hash: "123456"
+    });
+
+    await usersRepository.save(user);
+
+    await request(app).get(`/users/${user.id}`)
+      .expect(200);
+
+  });
 });
