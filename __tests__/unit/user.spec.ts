@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import request from "supertest";
 
 import app from "../../src/app";
@@ -51,5 +52,19 @@ describe("Users", () => {
     });
 
     expect(response.status).toBe(400);
+  });
+
+  it('should encrypt user password', async () => {
+    const usersRepository = connection.getRepository(User);
+
+    const user = usersRepository.create({
+      name: "User Example",
+      email: "user@example.com",
+      password_hash: await bcrypt.hash('123456', 8)
+    });
+
+    const compareHash = await bcrypt.compare('123456', user.password_hash);
+
+    expect(compareHash).toBe(true);
   });
 });
