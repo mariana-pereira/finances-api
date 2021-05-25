@@ -68,7 +68,7 @@ describe("Users", () => {
     expect(compareHash).toBe(true);
   });
 
-  it("should return a user when a valid id is provided", async () => {
+  it("should return an user when a valid id is provided", async () => {
     const usersRepository = connection.getRepository(User);
 
     const user = usersRepository.create({
@@ -84,7 +84,7 @@ describe("Users", () => {
 
   });
 
-  it("should not return a user when an invalid id is provided", async () => {
+  it("should not return an user when an invalid id is provided", async () => {
     const usersRepository = connection.getRepository(User);
 
     const user = usersRepository.create({
@@ -97,6 +97,21 @@ describe("Users", () => {
 
     await request(app).get('/users/b16f1e3c-3142-4946-83e0-a57f3c7e45a6')
       .expect(400);
+  });
+
+  it("should delete the user when a valid id is provided", async () => {
+    const usersRepository = connection.getRepository(User);
+
+    const user = usersRepository.create({
+      name: "User Example",
+      email: "user@example.com",
+      password_hash: "123456"
+    });
+
+    await usersRepository.save(user);
+
+    await request(app).delete(`/users/${user.id}`)
+      .expect(200);
 
   });
 });
