@@ -1,9 +1,27 @@
 import express from 'express';
 
-const app = express();
+import routes from './routes';
 
-app.get('/', (request, response) => {
-  response.json({ message: 'Hello World' });
-});
+import 'reflect-metadata';
 
-export default app;
+import './database';
+
+class App {
+  public express: express.Application;
+
+  constructor() {
+    this.express = express();
+    this.middlewares();
+    this.routes()
+  }
+
+  private middlewares (): void {
+    this.express.use(express.json());
+  }
+
+  private routes (): void {
+    this.express.use(routes);
+  }
+}
+
+export default new App().express
