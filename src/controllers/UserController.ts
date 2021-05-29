@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import * as Yup from 'yup';
 
 import CreateUserService from '../services/createUserService';
 import DeleteUserService from '../services/deleteUserService';
@@ -6,15 +7,28 @@ import ShowUserService from '../services/showUserService';
 
 class UserController {
   public async store (request: Request, response: Response): Promise<Response> {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      email: Yup.string().email().required(),
+      password: Yup.string().required().min(6),
+      confirmPassword: Yup.string().required().min(6)
+    });
+
     try {
-      const { name, email, password_hash } = request.body;
+      await schema.validate(request.body);
+
+      const { name, email, password, confirmPassword } = request.body;
+
+      if(password !== confirmPassword) {
+        return response.status(400).json({ error: "Passwords don't match!" });
+      }
 
       const createUser = new CreateUserService();
 
       const user = await createUser.execute({
         name,
         email,
-        password_hash,
+        password,
       });
 
       delete user.password_hash;

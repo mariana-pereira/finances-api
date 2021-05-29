@@ -28,10 +28,22 @@ describe("Users", () => {
     const response = await request(app).post("/users").send({
       name: "User Example",
       email: "user@example.com",
-      password_hash: "123456"
+      password: "123456",
+      confirmPassword: "123456"
     });
 
     expect(response.status).toBe(201);
+  });
+
+  it("should not be able to create a new user if passwords don't match", async () => {
+    const response = await request(app).post("/users").send({
+      name: "User Example",
+      email: "user@example.com",
+      password: "123456",
+      confirmPassword: "123123"
+    });
+
+    expect(response.status).toBe(400);
   });
 
   it("should not be able to create a new user with same email", async () => {
@@ -40,7 +52,7 @@ describe("Users", () => {
     const user = usersRepository.create({
       name: "User Example",
       email: "user@example.com",
-      password_hash: "123456"
+      password_hash: "123456",
     });
 
     await usersRepository.save(user);
@@ -48,7 +60,8 @@ describe("Users", () => {
     const response = await request(app).post("/users").send({
       name: "User Example",
       email: "user@example.com",
-      password_hash: "123456"
+      password: "123456",
+      confirmPassword: "123456"
     });
 
     expect(response.status).toBe(400);
