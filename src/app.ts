@@ -1,15 +1,15 @@
 import express from 'express';
 
+import createConnection from './database';
 import routes from './routes';
 
 import 'reflect-metadata';
-
-import './database';
 
 class App {
   public express: express.Application;
 
   constructor() {
+    createConnection();
     this.express = express();
     this.middlewares();
     this.routes()
