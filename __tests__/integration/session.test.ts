@@ -43,6 +43,7 @@ describe("Users", () => {
       });
 
     expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty('token');
   });
 
   it('should not authenticate with invalid credentials', async () => {
