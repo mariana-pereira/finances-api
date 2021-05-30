@@ -46,7 +46,7 @@ describe("Users", () => {
     expect(response.body).toHaveProperty('token');
   });
 
-  it('should not authenticate with invalid credentials', async () => {
+  it('should not authenticate with invalid password', async () => {
     const usersRepository = connection.getRepository(User);
 
     const user = usersRepository.create({
@@ -62,6 +62,27 @@ describe("Users", () => {
       .send({
         email: user.email,
         password: '123456'
+      });
+
+    expect(response.status).toBe(401);
+  });
+
+  it('should not authenticate with invalid email', async () => {
+    const usersRepository = connection.getRepository(User);
+
+    const user = usersRepository.create({
+      name: 'user',
+      email: 'test@mail.com',
+      password_hash: await bcrypt.hash('123123', 8)
+    });
+
+    await usersRepository.save(user);
+
+    const response = await request(app)
+      .post('/session')
+      .send({
+        email: 'invalid_email@mail.com',
+        password: '123123'
       });
 
     expect(response.status).toBe(401);
