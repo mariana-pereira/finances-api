@@ -44,4 +44,25 @@ describe("Users", () => {
 
     expect(response.status).toBe(200);
   });
+
+  it('should not authenticate with invalid credentials', async () => {
+    const usersRepository = connection.getRepository(User);
+
+    const user = usersRepository.create({
+      name: 'user',
+      email: 'test@mail.com',
+      password_hash: await bcrypt.hash('123123', 8)
+    });
+
+    await usersRepository.save(user);
+
+    const response = await request(app)
+      .post('/session')
+      .send({
+        email: user.email,
+        password: '123456'
+      });
+
+    expect(response.status).toBe(401);
+  });
 });

@@ -18,7 +18,7 @@ class SessionController {
 
       return response.status(200).json({ user, token });
     } catch (error) {
-      return response.status(400).json({ error: error.message });
+      return response.status(401).json({ error: error.message });
     }
   }
 }
