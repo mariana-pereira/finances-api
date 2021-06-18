@@ -15,7 +15,7 @@ class ShowAccountService {
      });
 
     if (!account) {
-      throw new Error('User not found.');
+      throw new Error('Account not found.');
     }
 
     return account;
