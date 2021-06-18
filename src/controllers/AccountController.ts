@@ -1,10 +1,23 @@
 import { Request, Response } from 'express';
 
 import CreateAccountService from '../services/account/createAccountService';
+import ListAccountsService from '../services/account/listAccountsService';
 import ShowAccountService from '../services/account/showAccountService';
 
 
 class AccountController {
+  public async index (request: Request, response: Response): Promise<Response> {
+    try {
+      const listAccounts = new ListAccountsService();
+
+      const accounts = await listAccounts.execute();
+
+      return response.status(200).json(accounts);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+
   public async store (request: Request, response: Response): Promise<Response> {
     try {
       const { bank, branch, account_number, account_type } = request.body;
