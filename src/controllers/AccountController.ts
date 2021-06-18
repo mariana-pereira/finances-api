@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 
 import CreateAccountService from '../services/account/createAccountService';
+import ShowAccountService from '../services/account/showAccountService';
+
 
 class AccountController {
   public async store (request: Request, response: Response): Promise<Response> {
@@ -20,6 +22,20 @@ class AccountController {
       });
 
       return response.status(201).json(account);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+
+  public async show (request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
+
+      const showAccount = new ShowAccountService();
+
+      const account = await showAccount.execute({ id });
+
+      return response.status(200).json(account);
     } catch (error) {
       return response.status(400).json({ error: error.message });
     }
