@@ -10,4 +10,6 @@ accountsRouter.use(authMiddleware);
 
 accountsRouter.post('/', AccountController.store);
 
+accountsRouter.get('/:id', AccountController.show);
+
 export default accountsRouter;
