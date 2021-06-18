@@ -1,4 +1,6 @@
-const clearDb = async (connection): Promise<void> => {
+import { Connection } from 'typeorm';
+
+const clearDb = async (connection: Connection): Promise<void> => {
   const entities = connection.entityMetadatas;
 
   entities.forEach(async (entity) => {
