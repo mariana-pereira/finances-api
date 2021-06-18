@@ -14,6 +14,8 @@ accountsRouter.get('/', AccountController.index);
 
 accountsRouter.get('/:id', AccountController.show);
 
+accountsRouter.put('/:id', AccountController.update);
+
 accountsRouter.delete('/:id', AccountController.delete);
 
 export default accountsRouter;
