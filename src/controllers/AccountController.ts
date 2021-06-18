@@ -4,6 +4,7 @@ import CreateAccountService from '../services/account/createAccountService';
 import DeleteAccountService from '../services/account/deleteAccountService';
 import ListAccountsService from '../services/account/listAccountsService';
 import ShowAccountService from '../services/account/showAccountService';
+import UpdateAccountService from '../services/account/updateAccountService';
 
 
 class AccountController {
@@ -48,6 +49,27 @@ class AccountController {
       const showAccount = new ShowAccountService();
 
       const account = await showAccount.execute({ id });
+
+      return response.status(200).json(account);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+
+  public async update (request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
+      const { bank, branch, account_number, account_type } = request.body;
+
+      const updateAccount = new UpdateAccountService();
+
+      const account = await updateAccount.execute({
+        id,
+        bank,
+        branch,
+        account_number,
+        account_type
+      });
 
       return response.status(200).json(account);
     } catch (error) {
