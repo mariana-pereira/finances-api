@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import CreateAccountService from '../services/createAccountService';
+import CreateAccountService from '../services/account/createAccountService';
 
 class AccountController {
   public async store (request: Request, response: Response): Promise<Response> {
