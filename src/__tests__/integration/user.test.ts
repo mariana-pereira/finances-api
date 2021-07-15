@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
 import request from "supertest";
 
-import app from "../../src/app";
-import createConnection from "../../src/database";
-import User from '../../src/models/User';
-import truncate from '../../src/utils/truncate';
+import app from "../../app";
+import createConnection from "../../database";
+import User from '../../models/User';
+import truncate from '../../utils/truncate';
 
 let connection;
 
