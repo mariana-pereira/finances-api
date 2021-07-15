@@ -1,6 +1,6 @@
 import { Connection } from 'typeorm';
 
-const clearDb = async (connection: Connection): Promise<void> => {
+export const clearDb = async (connection: Connection): Promise<void> => {
   const entities = connection.entityMetadatas;
 
   entities.forEach(async (entity) => {
@@ -8,5 +8,3 @@ const clearDb = async (connection: Connection): Promise<void> => {
     await repository.query(`DELETE FROM ${entity.tableName}`);
   });
 };
-
-export default clearDb;

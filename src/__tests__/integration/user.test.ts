@@ -4,7 +4,7 @@ import request from "supertest";
 import app from "../../app";
 import createConnection from "../../database";
 import User from '../../models/User';
-import truncate from '../../utils/truncate';
+import { clearDb } from '../../utils/database';
 
 let connection;
 
@@ -15,7 +15,7 @@ describe("Users", () => {
   });
 
   afterEach(async () => {
-    await truncate(connection);
+    await clearDb(connection);
   });
 
   afterAll(async done => {
