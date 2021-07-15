@@ -1,7 +1,7 @@
 import { hash } from 'bcryptjs';
 import { getRepository } from 'typeorm';
 
-import User from '@models/User';
+import { User } from '@modules/users/model/user';
 
 interface Request {
   name: string;
@@ -9,7 +9,7 @@ interface Request {
   password: string;
 }
 
-class CreateUserService {
+class CreateUserUseCase {
   public async execute({ name, email, password }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
@@ -35,4 +35,4 @@ class CreateUserService {
   }
 }
 
-export default CreateUserService;
+export { CreateUserUseCase };

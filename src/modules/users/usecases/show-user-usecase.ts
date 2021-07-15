@@ -1,13 +1,13 @@
 import { getRepository } from 'typeorm';
 
-import User from '@models/User';
+import { User } from '@modules/users/model/user';
 
 interface Request {
   id: string;
 }
 
-class DeleteUserService {
-  public async execute({ id }: Request): Promise<void> {
+class ShowUserUseCase {
+  public async execute({ id }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
     const user = await usersRepository.findOne({
@@ -18,8 +18,8 @@ class DeleteUserService {
       throw new Error('User not found.');
     }
 
-    await usersRepository.delete(id);
+    return user;
   }
 }
 
-export default DeleteUserService;
+export { ShowUserUseCase };
