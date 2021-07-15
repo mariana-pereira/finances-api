@@ -1,9 +1,10 @@
 import bcrypt from 'bcryptjs';
 import request from "supertest";
 
+import { User } from '@modules/users/model/user';
+
 import app from "../../app";
 import createConnection from "../../database";
-import User from '../../models/User';
 import { clearDb } from '../../utils/database';
 
 let connection;
