@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 
 import authConfig from '@config/auth';
-import User from '@models/User';
+import { User } from '@modules/users/model/user';
 
 interface Request {
   email: string;
@@ -15,7 +15,7 @@ interface Response {
   token: string;
 }
 
-class AuthenticateUserService {
+class AuthenticateUserUseCase {
   public async execute({ email, password }: Request): Promise<Response> {
     const usersRepository = getRepository(User);
 
@@ -43,4 +43,4 @@ class AuthenticateUserService {
   }
 }
 
-export default AuthenticateUserService;
+export { AuthenticateUserUseCase };
