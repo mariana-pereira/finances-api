@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 
-import User from './User';
+import { User } from '@modules/users/model/user';
 
 @Entity('accounts')
 class Account {
@@ -33,4 +33,4 @@ class Account {
   updated_at: Date;
 }
 
-export default Account;
+export { Account };
