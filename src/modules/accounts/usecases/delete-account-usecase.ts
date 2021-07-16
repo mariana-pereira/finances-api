@@ -1,13 +1,13 @@
 import { getRepository } from 'typeorm';
 
-import Account from '@models/Account';
+import { Account } from '@modules/accounts/model/account';
 
 interface Request {
   id: string;
 }
 
-class ShowAccountService {
-  public async execute({ id }: Request): Promise<Account> {
+class DeleteAccountUseCase {
+  public async execute({ id }: Request): Promise<void> {
     const accountsRepository = getRepository(Account);
 
     const account = await accountsRepository.findOne({
@@ -18,8 +18,8 @@ class ShowAccountService {
       throw new Error('Account not found.');
     }
 
-    return account;
+    await accountsRepository.delete(id);
   }
 }
 
-export default ShowAccountService;
+export { DeleteAccountUseCase };
