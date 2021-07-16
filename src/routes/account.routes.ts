@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import AccountController from '@controllers/AccountController';
+import AccountController from '@modules/accounts/usecases/account-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 

@@ -1,16 +1,15 @@
 import { Request, Response } from 'express';
 
-import CreateAccountService from '../services/account/createAccountService';
-import DeleteAccountService from '../services/account/deleteAccountService';
-import ListAccountsService from '../services/account/listAccountsService';
-import ShowAccountService from '../services/account/showAccountService';
-import UpdateAccountService from '../services/account/updateAccountService';
-
+import { CreateAccountUseCase } from './create-account-usecase';
+import { DeleteAccountUseCase } from './delete-account-usecase';
+import { ListAccountsUseCase } from './list-accounts-usecase';
+import { ShowAccountUseCase } from './show-account-usecase';
+import { UpdateAccountUseCase } from './update-account-usecase';
 
 class AccountController {
   public async index (request: Request, response: Response): Promise<Response> {
     try {
-      const listAccounts = new ListAccountsService();
+      const listAccounts = new ListAccountsUseCase();
 
       const accounts = await listAccounts.execute();
 
@@ -26,7 +25,7 @@ class AccountController {
 
       console.log(bank, branch, account_number, account_type, request.user.id)
 
-      const createAccount = new CreateAccountService();
+      const createAccount = new CreateAccountUseCase();
 
       const account = await createAccount.execute({
         bank,
@@ -46,7 +45,7 @@ class AccountController {
     try {
       const { id } = request.params;
 
-      const showAccount = new ShowAccountService();
+      const showAccount = new ShowAccountUseCase();
 
       const account = await showAccount.execute({ id });
 
@@ -61,7 +60,7 @@ class AccountController {
       const { id } = request.params;
       const { bank, branch, account_number, account_type } = request.body;
 
-      const updateAccount = new UpdateAccountService();
+      const updateAccount = new UpdateAccountUseCase();
 
       const account = await updateAccount.execute({
         id,
@@ -81,7 +80,7 @@ class AccountController {
     try {
       const { id } = request.params;
 
-      const deleteAccount = new DeleteAccountService();
+      const deleteAccount = new DeleteAccountUseCase();
 
       await deleteAccount.execute({ id });
 
