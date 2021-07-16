@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 
-import Account from '@models/Account';
+import { Account } from '@modules/accounts/model/account';
 
 interface Request {
   bank: string;
@@ -10,7 +10,7 @@ interface Request {
   user_id: string;
 }
 
-class CreateAccountService {
+class CreateAccountUseCase {
   public async execute({ bank, branch, account_number, account_type, user_id }: Request): Promise<Account> {
     const accountsRepository = getRepository(Account);
 
@@ -28,4 +28,4 @@ class CreateAccountService {
   }
 }
 
-export default CreateAccountService;
+export { CreateAccountUseCase };

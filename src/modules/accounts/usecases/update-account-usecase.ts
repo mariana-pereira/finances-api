@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
 
-import Account from '@models/Account';
+import { Account } from '@modules/accounts/model/account';
 
 interface Request {
   id: string;
@@ -10,7 +10,7 @@ interface Request {
   account_type: string;
 }
 
-class UpdateAccountService {
+class UpdateAccountUseCase {
   public async execute({
     id,
     bank,
@@ -36,4 +36,4 @@ class UpdateAccountService {
   }
 }
 
-export default UpdateAccountService;
+export { UpdateAccountUseCase };

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 
-import AuthenticateUserService from '../services/AuthenticateUserService';
+import { AuthenticateUserUseCase } from './authenticate-user-usecase';
 
 class SessionController {
   public async store (request: Request, response: Response): Promise<Response> {
@@ -15,7 +15,7 @@ class SessionController {
 
       const { email, password } = request.body;
 
-      const authenticateUser = new AuthenticateUserService();
+      const authenticateUser = new AuthenticateUserUseCase();
 
       const { user, token } = await authenticateUser.execute({
         email,

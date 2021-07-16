@@ -6,7 +6,7 @@
   "password": "docker",
   "database": "finances-dev",
   "migrations": ["./src/database/migrations/**.ts"],
-  "entities": ["./src/models/**.ts"],
+  "entities": ["./src/modules/**/model/*.ts"],
   "logging": true,
   "cli": {
     "migrationsDir": "./src/database/migrations"

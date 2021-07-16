@@ -1,10 +1,11 @@
 import bcrypt from 'bcryptjs';
 import request from "supertest";
 
-import app from "../../src/app";
-import createConnection from "../../src/database";
-import User from '../../src/models/User';
-import truncate from '../../src/utils/truncate';
+import { User } from '@modules/users/model/user';
+
+import app from "../../app";
+import createConnection from "../../database";
+import { clearDb } from '../../utils/database';
 
 let connection;
 
@@ -15,7 +16,7 @@ describe("Users", () => {
   });
 
   afterEach(async () => {
-    await truncate(connection);
+    await clearDb(connection);
   });
 
   afterAll(async done => {

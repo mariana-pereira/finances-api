@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 
-import CreateUserService from '../services/createUserService';
-import DeleteUserService from '../services/deleteUserService';
-import ShowUserService from '../services/showUserService';
+import { CreateUserUseCase } from './create-user-usecase';
+import { DeleteUserUseCase } from './delete-user-usecase';
+import { ShowUserUseCase } from './show-user-usecase';
 
 class UserController {
   public async store (request: Request, response: Response): Promise<Response> {
@@ -23,7 +23,7 @@ class UserController {
         return response.status(400).json({ error: "Passwords don't match!" });
       }
 
-      const createUser = new CreateUserService();
+      const createUser = new CreateUserUseCase();
 
       const user = await createUser.execute({
         name,
@@ -43,7 +43,7 @@ class UserController {
     try {
       const { id } = request.params;
 
-      const showUser = new ShowUserService();
+      const showUser = new ShowUserUseCase();
 
       const user = await showUser.execute({ id });
 
@@ -59,7 +59,7 @@ class UserController {
     try {
       const { id } = request.params;
 
-      const deleteUser = new DeleteUserService();
+      const deleteUser = new DeleteUserUseCase();
 
       await deleteUser.execute({ id });
 
