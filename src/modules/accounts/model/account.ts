@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 
-import { User } from '@modules/users/model/user';
+import { User } from '../../users/model/user';
 
 @Entity('accounts')
 class Account {
@@ -12,7 +12,7 @@ class Account {
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user: User
+  user: User;
 
   @Column()
   bank: string;
