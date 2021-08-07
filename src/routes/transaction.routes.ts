@@ -10,4 +10,6 @@ transactionsRouter.use(authMiddleware);
 
 transactionsRouter.post('/', TransactionController.store);
 
+transactionsRouter.get('/', TransactionController.index);
+
 export default transactionsRouter;
