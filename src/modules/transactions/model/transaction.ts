@@ -1,9 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 
+import { Account } from '../../accounts/model/account';
 import { User } from '../../users/model/user';
 
-@Entity('accounts')
-class Account {
+@Entity('transactions')
+class Transaction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -15,16 +16,26 @@ class Account {
   user: User;
 
   @Column()
-  bank: string;
+  account_id: string;
+
+  @ManyToOne(() => Account)
+  @JoinColumn({ name: 'account_id' })
+  account: Account;
 
   @Column()
-  branch: string;
+  date: Date;
+
+  @Column('decimal', { precision: 5, scale: 2 })
+  amount: number;
 
   @Column()
-  account_number: string;
+  type: string;
 
   @Column()
-  account_type: string;
+  category: string;
+
+  @Column()
+  source: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -33,4 +44,4 @@ class Account {
   updated_at: Date;
 }
 
-export { Account };
+export { Transaction };
