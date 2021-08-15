@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import { CreateTargetUseCase } from './create-target-usecase';
+import { DeleteTargetUseCase } from './delete-target-usecase';
 import { ListTargetsUseCase } from './list-targets-usecase';
 import { ShowTargetUseCase } from './show-target-usecase';
 import { UpdateTargetUseCase } from './update-target-usecase';
@@ -69,6 +70,20 @@ class TargetController {
       });
 
       return response.status(200).json(target);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+
+  public async delete (request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
+
+      const deleteTarget = new DeleteTargetUseCase();
+
+      await deleteTarget.execute({ id });
+
+      return response.status(200).json({ message: 'Target successfully deleted.'});
     } catch (error) {
       return response.status(400).json({ error: error.message });
     }

@@ -16,4 +16,6 @@ targetsRouter.get('/:id', TargetController.show);
 
 targetsRouter.put('/:id', TargetController.update);
 
+targetsRouter.delete('/:id', TargetController.delete);
+
 export default targetsRouter;
