@@ -10,4 +10,6 @@ targetsRouter.use(authMiddleware);
 
 targetsRouter.post('/', TargetController.store);
 
+targetsRouter.get('/', TargetController.index);
+
 export default targetsRouter;
