@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import { CreateTargetUseCase } from './create-target-usecase';
 import { ListTargetsUseCase } from './list-targets-usecase';
+import { ShowTargetUseCase } from './show-target-usecase';
 import { UpdateTargetUseCase } from './update-target-usecase';
 
 class TargetController {
@@ -33,6 +34,20 @@ class TargetController {
       });
 
       return response.status(201).json(account);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
+  }
+
+  public async show (request: Request, response: Response): Promise<Response> {
+    try {
+      const { id } = request.params;
+
+      const showTarget = new ShowTargetUseCase();
+
+      const target = await showTarget.execute({ id });
+
+      return response.status(200).json(target);
     } catch (error) {
       return response.status(400).json({ error: error.message });
     }

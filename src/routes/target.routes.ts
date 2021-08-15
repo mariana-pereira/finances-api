@@ -12,6 +12,8 @@ targetsRouter.post('/', TargetController.store);
 
 targetsRouter.get('/', TargetController.index);
 
+targetsRouter.get('/:id', TargetController.show);
+
 targetsRouter.put('/:id', TargetController.update);
 
 export default targetsRouter;
