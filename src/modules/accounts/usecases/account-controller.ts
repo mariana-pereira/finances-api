@@ -11,7 +11,9 @@ class AccountController {
     try {
       const listAccounts = new ListAccountsUseCase();
 
-      const accounts = await listAccounts.execute();
+      const user_id = request.user.id;
+
+      const accounts = await listAccounts.execute({ user_id });
 
       return response.status(200).json(accounts);
     } catch (error) {
