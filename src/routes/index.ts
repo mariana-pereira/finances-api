@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import accountsRouter from './account.routes';
+import investmentsRouter from './investment.routes';
 import sessionsRouter from './session.routes';
 import targetsRouter from './target.routes';
 import transactionsRouter from './transaction.routes';
@@ -17,5 +18,7 @@ routes.use('/accounts', accountsRouter);
 routes.use('/transactions', transactionsRouter);
 
 routes.use('/targets', targetsRouter);
+
+routes.use('/investments', investmentsRouter);
 
 export default routes;
