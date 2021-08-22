@@ -10,4 +10,6 @@ investmentsRouter.use(authMiddleware);
 
 investmentsRouter.post('/', InvestmentController.store);
 
+investmentsRouter.get('/', InvestmentController.index);
+
 export default investmentsRouter;
