@@ -4,6 +4,7 @@ import CreateTargetController from '@modules/targets/usecases/create-target/crea
 import DeleteTargetController from '@modules/targets/usecases/delete-target/delete-target-controller';
 import ListTargetsController from '@modules/targets/usecases/list-targets/list-targets-controller';
 import ShowTargetController from '@modules/targets/usecases/show-target/show-target-controller';
+import UpdateTargetController from '@modules/targets/usecases/update-target/update-target-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 
@@ -17,7 +18,7 @@ targetsRouter.get('/', ListTargetsController.handle);
 
 targetsRouter.get('/:id', ShowTargetController.handle);
 
-// targetsRouter.put('/:id', TargetController.update);
+targetsRouter.put('/:id', UpdateTargetController.handle);
 
 targetsRouter.delete('/:id', DeleteTargetController.handle);
 
