@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import AccountController from '@modules/accounts/usecases/account-controller';
+import CreateAccountController from '@modules/accounts/usecases/create-account/create-account-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 
@@ -8,14 +8,14 @@ const accountsRouter = Router();
 
 accountsRouter.use(authMiddleware);
 
-accountsRouter.post('/', AccountController.store);
+accountsRouter.post('/', CreateAccountController.handle);
 
-accountsRouter.get('/', AccountController.index);
+// accountsRouter.get('/', AccountController.index);
 
-accountsRouter.get('/:id', AccountController.show);
+// accountsRouter.get('/:id', AccountController.show);
 
-accountsRouter.put('/:id', AccountController.update);
+// accountsRouter.put('/:id', AccountController.update);
 
-accountsRouter.delete('/:id', AccountController.delete);
+// accountsRouter.delete('/:id', AccountController.delete);
 
 export default accountsRouter;
