@@ -1,17 +1,17 @@
 import { Router } from 'express';
 
-import UserController from '@modules/users/usecases/user-controller';
+import CreateUserController from '@modules/users/usecases/create-user/create-user-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 
 const usersRouter = Router();
 
-usersRouter.post('/', UserController.store);
+usersRouter.post('/', CreateUserController.handle);
 
 usersRouter.use(authMiddleware);
 
-usersRouter.get('/:id', UserController.show);
+// usersRouter.get('/:id', UserController.show);
 
-usersRouter.delete('/:id', UserController.delete);
+// usersRouter.delete('/:id', UserController.delete);
 
 export default usersRouter;
