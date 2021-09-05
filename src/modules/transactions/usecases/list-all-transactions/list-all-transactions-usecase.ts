@@ -6,7 +6,7 @@ interface Request {
   user_id: string;
 }
 
-class ListTransactionsUseCase {
+class ListAllTransactionsUseCase {
   public async execute({ user_id }: Request): Promise<Transaction[]> {
     const transactionsRepository = getRepository(Transaction);
 
@@ -16,4 +16,4 @@ class ListTransactionsUseCase {
   }
 }
 
-export { ListTransactionsUseCase };
+export { ListAllTransactionsUseCase };

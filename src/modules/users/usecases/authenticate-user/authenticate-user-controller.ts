@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 
 import { AuthenticateUserUseCase } from './authenticate-user-usecase';
 
-class SessionController {
-  public async store (request: Request, response: Response): Promise<Response> {
+class AuthenticateUserController {
+  async handle (request: Request, response: Response): Promise<Response> {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
       password: Yup.string().required().min(6)
@@ -31,4 +31,4 @@ class SessionController {
   }
 }
 
-export default new SessionController();
+export default new AuthenticateUserController();
