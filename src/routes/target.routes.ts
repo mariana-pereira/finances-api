@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import CreateTargetController from '@modules/targets/usecases/create-target/create-target-controller';
 import DeleteTargetController from '@modules/targets/usecases/delete-target/delete-target-controller';
+import ListTargetsController from '@modules/targets/usecases/list-targets/list-targets-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 
@@ -11,7 +12,7 @@ targetsRouter.use(authMiddleware);
 
 targetsRouter.post('/', CreateTargetController.handle);
 
-// targetsRouter.get('/', TargetController.index);
+targetsRouter.get('/', ListTargetsController.handle);
 
 // targetsRouter.get('/:id', TargetController.show);
 
