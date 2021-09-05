@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import CreateTargetController from '@modules/targets/usecases/create-target/create-target-controller';
+import DeleteTargetController from '@modules/targets/usecases/delete-target/delete-target-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 
@@ -16,6 +17,6 @@ targetsRouter.post('/', CreateTargetController.handle);
 
 // targetsRouter.put('/:id', TargetController.update);
 
-// targetsRouter.delete('/:id', TargetController.delete);
+targetsRouter.delete('/:id', DeleteTargetController.handle);
 
 export default targetsRouter;
