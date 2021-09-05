@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import CreateAccountController from '@modules/accounts/usecases/create-account/create-account-controller';
+import DeleteAccountController from '@modules/accounts/usecases/delete-account/delete-account-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 
@@ -16,6 +17,6 @@ accountsRouter.post('/', CreateAccountController.handle);
 
 // accountsRouter.put('/:id', AccountController.update);
 
-// accountsRouter.delete('/:id', AccountController.delete);
+accountsRouter.delete('/:id', DeleteAccountController.handle);
 
 export default accountsRouter;
