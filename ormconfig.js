@@ -9,11 +9,11 @@ module.exports = {
   "database": process.env.TYPEORM_DATABASE,
   "entities": [
     "./src/modules/**/model/*.ts",
-    "./dist/modules/**/model/*.ts"
+    "./dist/modules/**/model/*.js"
   ],
   "migrations": [
     "./src/database/migrations/**.ts",
-    "./dist/database/migrations/**.ts"
+    "./dist/database/migrations/**.js"
   ],
   "cli": {
     "migrationsDir": "./src/database/migrations",
