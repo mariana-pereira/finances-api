@@ -9,22 +9,21 @@ export class CreateInvestments1629635624758 implements MigrationInterface {
           columns: [
             {
               name: 'id',
-              type: 'uuid',
+              type: 'varchar',
               isPrimary: true,
               generationStrategy: 'uuid',
-              default: 'uuid_generate_v4()',
             },
             {
               name: 'user_id',
-              type: 'uuid'
+              type: 'varchar'
             },
             {
               name: 'account_id',
-              type: 'uuid'
+              type: 'varchar'
             },
             {
               name: 'target_id',
-              type: 'uuid'
+              type: 'varchar'
             },
             {
               name: 'name',
@@ -64,7 +63,7 @@ export class CreateInvestments1629635624758 implements MigrationInterface {
           ],
           foreignKeys: [
             {
-              name: 'FKUser',
+              name: 'FKUserInvestment',
               referencedTableName: 'users',
               referencedColumnNames: ['id'],
               columnNames: ['user_id'],
@@ -72,7 +71,7 @@ export class CreateInvestments1629635624758 implements MigrationInterface {
               onUpdate: 'CASCADE'
             },
             {
-              name: 'FKAccount',
+              name: 'FKAccountInvestment',
               referencedTableName: 'accounts',
               referencedColumnNames: ['id'],
               columnNames: ['account_id'],
@@ -80,7 +79,7 @@ export class CreateInvestments1629635624758 implements MigrationInterface {
               onUpdate: 'CASCADE'
             },
             {
-              name: 'FKTarget',
+              name: 'FKTargetInvestment',
               referencedTableName: 'targets',
               referencedColumnNames: ['id'],
               columnNames: ['target_id'],

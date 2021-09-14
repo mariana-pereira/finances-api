@@ -18,10 +18,5 @@ module.exports = {
   "cli": {
     "migrationsDir": "./src/database/migrations",
     "migrationsDir": "./dist/database/migrations"
-  },
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    }
   }
 }

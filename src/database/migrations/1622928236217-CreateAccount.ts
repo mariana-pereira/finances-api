@@ -9,14 +9,13 @@ export class CreateAccount1622928236217 implements MigrationInterface {
           columns: [
             {
               name: 'id',
-              type: 'uuid',
+              type: 'varchar',
               isPrimary: true,
               generationStrategy: 'uuid',
-              default: 'uuid_generate_v4()',
             },
             {
               name: 'user_id',
-              type: 'uuid'
+              type: 'varchar'
             },
             {
               name: 'bank',
@@ -48,7 +47,7 @@ export class CreateAccount1622928236217 implements MigrationInterface {
           ],
           foreignKeys: [
             {
-                name: 'FKUser',
+                name: 'FKUserAccount',
                 referencedTableName: 'users',
                 referencedColumnNames: ['id'],
                 columnNames: ['user_id'],

@@ -9,14 +9,13 @@ export class createTargets1629033169626 implements MigrationInterface {
           columns: [
             {
               name: 'id',
-              type: 'uuid',
+              type: 'varchar',
               isPrimary: true,
               generationStrategy: 'uuid',
-              default: 'uuid_generate_v4()',
             },
             {
               name: 'user_id',
-              type: 'uuid'
+              type: 'varchar'
             },
             {
               name: 'name',
@@ -43,7 +42,7 @@ export class createTargets1629033169626 implements MigrationInterface {
           ],
           foreignKeys: [
             {
-                name: 'FKUser',
+                name: 'FKUserTarget',
                 referencedTableName: 'users',
                 referencedColumnNames: ['id'],
                 columnNames: ['user_id'],
