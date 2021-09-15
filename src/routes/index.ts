@@ -9,6 +9,10 @@ import usersRouter from './user.routes';
 
 const routes = Router();
 
+routes.get('/ping', (request, response) => {
+  response.json({ message: 'ok '});
+});
+
 routes.use('/users', usersRouter);
 
 routes.use('/session', sessionsRouter);
