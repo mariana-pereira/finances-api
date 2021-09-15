@@ -8,15 +8,12 @@ module.exports = {
   "password": process.env.TYPEORM_PASSWORD,
   "database": process.env.TYPEORM_DATABASE,
   "entities": [
-    "./src/modules/**/model/*.ts",
-    "./dist/modules/**/model/*.js"
+    process.env.TYPEORM_ENTITIES,
   ],
   "migrations": [
-    "./src/database/migrations/**.ts",
-    "./dist/database/migrations/**.js"
+    process.env.TYPEORM_MIGRATIONS,
   ],
   "cli": {
-    "migrationsDir": "./src/database/migrations",
-    "migrationsDir": "./dist/database/migrations"
+    "migrationsDir": process.env.TYPEORM_MIGRATIONS_DIR,
   }
 }
