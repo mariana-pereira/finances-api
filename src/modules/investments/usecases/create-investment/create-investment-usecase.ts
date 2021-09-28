@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 
 import { Investment } from '@modules/investments/model/investment';
+import { Transaction } from '@modules/transactions/model/transaction';
 
 interface Request {
   name: string;
@@ -17,6 +18,7 @@ interface Request {
 class CreateInvestmentUseCase {
   public async execute({ name, type, tax, application_date, redeem_date, amount, account_id, target_id, user_id }: Request): Promise<Investment> {
     const investmentsRepository = getRepository(Investment);
+    const transactionsRepository = getRepository(Transaction);
 
     const investment = investmentsRepository.create({
       name,
@@ -30,7 +32,18 @@ class CreateInvestmentUseCase {
       user_id
     });
 
+    const transaction = transactionsRepository.create({
+      date: application_date,
+      amount,
+      type: 'outcome',
+      category: 'investment',
+      source: type,
+      account_id,
+      user_id
+    })
+
     await investmentsRepository.save(investment);
+    await transactionsRepository.save(transaction);
 
     return investment;
   }
