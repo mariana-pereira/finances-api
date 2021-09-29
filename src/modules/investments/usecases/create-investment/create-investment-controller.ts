@@ -21,6 +21,10 @@ class CreateInvestmentController {
         user_id: request.user.id
       });
 
+      if(!investment) {
+        return response.status(400).json({ error: 'Investment creation failed.' });
+      }
+
       return response.status(201).json(investment);
     } catch (error) {
       return response.status(400).json({ error: error.message });

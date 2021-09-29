@@ -20,6 +20,24 @@ class CreateInvestmentUseCase {
     const investmentsRepository = getRepository(Investment);
     const transactionsRepository = getRepository(Transaction);
 
+    const { sum: totalIncome } = await transactionsRepository
+    .createQueryBuilder("transaction")
+    .select("SUM(transaction.amount)", "sum")
+    .where("transaction.type = :type", { type: "income" })
+    .getRawOne();
+
+    const { sum: totalOutcome } = await transactionsRepository
+    .createQueryBuilder("transaction")
+    .select("SUM(transaction.amount)", "sum")
+    .where("transaction.type = :type", { type: "outcome" })
+    .getRawOne();
+
+    const accountBalance = totalIncome - totalOutcome;
+
+    if(accountBalance < amount) {
+      return;
+    }
+
     const investment = investmentsRepository.create({
       name,
       type,
