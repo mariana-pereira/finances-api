@@ -9,18 +9,17 @@ export class CreateTransactions1628287942959 implements MigrationInterface {
           columns: [
             {
               name: 'id',
-              type: 'uuid',
+              type: 'varchar',
               isPrimary: true,
               generationStrategy: 'uuid',
-              default: 'uuid_generate_v4()',
             },
             {
               name: 'user_id',
-              type: 'uuid'
+              type: 'varchar'
             },
             {
               name: 'account_id',
-              type: 'uuid'
+              type: 'varchar'
             },
             {
               name: 'date',
@@ -57,7 +56,7 @@ export class CreateTransactions1628287942959 implements MigrationInterface {
           ],
           foreignKeys: [
             {
-              name: 'FKUser',
+              name: 'FKUserTransaction',
               referencedTableName: 'users',
               referencedColumnNames: ['id'],
               columnNames: ['user_id'],
@@ -65,7 +64,7 @@ export class CreateTransactions1628287942959 implements MigrationInterface {
               onUpdate: 'CASCADE'
             },
             {
-              name: 'FKAccount',
+              name: 'FKAccountTransaction',
               referencedTableName: 'accounts',
               referencedColumnNames: ['id'],
               columnNames: ['account_id'],
