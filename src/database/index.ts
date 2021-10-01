@@ -7,8 +7,8 @@ export default async (): Promise<Connection> => {
     Object.assign(defaultOptions, {
       database:
         process.env.NODE_ENV === 'test'
-        ? 'finances-test'
-        : defaultOptions.database
-    })
+          ? 'finances-test'
+          : defaultOptions.database,
+    }),
   );
-}
+};
