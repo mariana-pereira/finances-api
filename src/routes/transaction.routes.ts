@@ -7,7 +7,6 @@ import ListAllTransactionsController from '@modules/transactions/usecases/list-a
 
 import authMiddleware from '../middlewares/authMiddleware';
 
-
 const transactionsRouter = Router();
 
 transactionsRouter.use(authMiddleware);

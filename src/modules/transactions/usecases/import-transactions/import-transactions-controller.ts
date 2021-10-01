@@ -2,8 +2,12 @@ import { Request, Response } from 'express';
 
 import { ImportTransactionsUseCase } from './import-transactions-usecase';
 
+interface MulterRequest extends Request {
+  file: any;
+}
+
 class ImportTransactionsController {
-  public async handle (request: Request, response: Response): Promise<Response> {
+  public async handle (request: MulterRequest, response: Response): Promise<Response> {
     try {
       const { file } = request;
       const { account_id } = request.body;

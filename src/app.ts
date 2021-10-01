@@ -13,17 +13,17 @@ class App {
     createConnection();
     this.express = express();
     this.middlewares();
-    this.routes()
+    this.routes();
   }
 
-  private middlewares (): void {
+  private middlewares(): void {
     this.express.use(express.json());
     this.express.use(cors());
   }
 
-  private routes (): void {
+  private routes(): void {
     this.express.use(routes);
   }
 }
 
-export default new App().express
+export default new App().express;
