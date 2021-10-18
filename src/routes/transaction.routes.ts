@@ -4,6 +4,7 @@ import multerConfig from '@config/multer';
 import CreateTransactionController from '@modules/transactions/usecases/create-transaction/create-transaction-controller';
 import ImportTransactionsController from '@modules/transactions/usecases/import-transactions/import-transactions-controller';
 import ListAllTransactionsController from '@modules/transactions/usecases/list-all-transactions/list-all-transactions-controller';
+import FilterTransactionsController from '@modules/transactions/usecases/filter-transactions/filter-transactions-controller';
 
 import authMiddleware from '../middlewares/authMiddleware';
 
@@ -16,5 +17,7 @@ transactionsRouter.post('/', CreateTransactionController.handle);
 transactionsRouter.post('/import', multerConfig.single('file'), ImportTransactionsController.handle);
 
 transactionsRouter.get('/', ListAllTransactionsController.handle);
+
+transactionsRouter.get('/filter', FilterTransactionsController.handle);
 
 export default transactionsRouter;
