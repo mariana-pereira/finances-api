@@ -1,6 +1,8 @@
 import cors from 'cors';
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
+import 'express-async-errors';
 
+import AppError from '@errors/AppError';
 import createConnection from './database';
 import routes from './routes';
 
@@ -23,6 +25,20 @@ class App {
 
   private routes(): void {
     this.express.use(routes);
+
+    this.express.use((err: Error, request: Request, response: Response, _: NextFunction) => {
+      if (err instanceof AppError) {
+        return response.status(err.statusCode).json({
+          status: 'error',
+          message: err.message,
+        });
+      }
+
+      return response.status(500).json({
+        status: 'error',
+        message: 'Internal Server Error',
+      });
+    });
   }
 }
 
