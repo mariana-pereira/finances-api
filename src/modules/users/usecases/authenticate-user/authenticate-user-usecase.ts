@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm';
 
 import authConfig from '@config/auth';
 import { User } from '@modules/users/model/user';
+import AppError from '@errors/AppError';
 
 interface Request {
   email: string;
@@ -22,13 +23,13 @@ class AuthenticateUserUseCase {
     const user = await usersRepository.findOne({ where: { email } });
 
     if (!user) {
-      throw new Error('Incorrect username/password combination.');
+      throw new AppError('Incorrect username/password combination.');
     }
 
     const passwordMatched = await compare(password, user.password_hash);
 
     if (!passwordMatched) {
-      throw new Error('Incorrect email/password combination.');
+      throw new AppError('Incorrect email/password combination.');
     }
 
     const token = sign({}, authConfig.jwt.secret, {
@@ -38,7 +39,7 @@ class AuthenticateUserUseCase {
 
     return {
       user,
-      token
+      token,
     };
   }
 }

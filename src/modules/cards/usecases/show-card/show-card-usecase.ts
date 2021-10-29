@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 
 import { Card } from '@modules/cards/model/card';
+import AppError from '@errors/AppError';
 
 interface Request {
   id: string;
@@ -11,11 +12,11 @@ class ShowCardUseCase {
     const cardsRepository = getRepository(Card);
 
     const card = await cardsRepository.findOne({
-      where: { id }
-     });
+      where: { id },
+    });
 
     if (!card) {
-      throw new Error('Account not found.');
+      throw new AppError('Account not found.');
     }
 
     return card;

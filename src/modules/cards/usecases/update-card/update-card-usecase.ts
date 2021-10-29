@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 
 import { Card } from '@modules/cards/model/card';
+import AppError from '@errors/AppError';
 
 interface Request {
   id: string;
@@ -16,19 +17,21 @@ class UpdateCardUseCase {
     name,
     number,
     limit,
-    expiry_day
+    expiry_day,
   }: Request): Promise<Card> {
     const cardsRepository = getRepository(Card);
 
     const card = await cardsRepository.findOne({
-      where: { id }
-     });
+      where: { id },
+    });
 
     if (!card) {
-      throw new Error('Card not found.');
+      throw new AppError('Card not found.');
     }
 
-    const updatedCard = cardsRepository.merge(card, { name, number, limit, expiry_day });
+    const updatedCard = cardsRepository.merge(card, {
+      name, number, limit, expiry_day,
+    });
 
     await cardsRepository.save(updatedCard);
 

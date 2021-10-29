@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 
 import { Target } from '@modules/targets/model/target';
+import AppError from '@errors/AppError';
 
 interface Request {
   id: string;
@@ -11,11 +12,11 @@ class DeleteTargetUseCase {
     const targetsRepository = getRepository(Target);
 
     const target = await targetsRepository.findOne({
-      where: { id }
-     });
+      where: { id },
+    });
 
     if (!target) {
-      throw new Error('Target not found.');
+      throw new AppError('Target not found.');
     }
 
     await targetsRepository.delete(id);
