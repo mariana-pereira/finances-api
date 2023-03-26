@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "prisma:migrate": "npx prisma migrate dev --schema=src/infra/database/prisma/schema.prisma"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -57,6 +58,9 @@
       "json",
       "ts"
     ],
+    "prisma": {
+      "schema": "src/infra/database/prisma/schema.prisma"
+    },
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
