@@ -4,7 +4,7 @@ import { PrismaClientUnknownRequestError } from '@prisma/client/runtime';
 import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/infra/database/prisma/prisma.service';
-import { AuthDto } from 'src/http/dtos/auth';
+import { SignInDto, SignUpDto } from 'src/http/dtos/auth';
 
 @Injectable()
 export class AuthService {
@@ -14,8 +14,18 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-  async signup(data: AuthDto) {
+  async signup(data: SignUpDto) {
     try {
+      const userExists = await this.prismaService.user.findUnique({
+        where: {
+          email: data.email,
+        },
+      });
+
+      if (userExists) {
+        throw new ForbiddenException('Credentials already taken.');
+      }
+
       const hash = await argon.hash(data.password);
 
       const user = await this.prismaService.user.create({
@@ -35,6 +45,26 @@ export class AuthService {
       }
       throw error;
     }
+  }
+
+  async login(data: SignInDto) {
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        email: data.email,
+      },
+    });
+
+    if (!user) {
+      throw new ForbiddenException('Credentials incorrect.');
+    }
+
+    const pwMatches = await argon.verify(user.password, data.password);
+
+    if (!pwMatches) {
+      throw new ForbiddenException('Credentials incorrect.');
+    }
+
+    return this.signToken(user.id, user.email);
   }
 
   async signToken(
