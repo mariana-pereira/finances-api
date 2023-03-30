@@ -11,34 +11,58 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  name      String
-  email     String    @unique
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  accounts  Account[]
-  targets   Target[]
+  id         String       @id @default(uuid())
+  name       String
+  email      String       @unique
+  password   String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  accounts   Account[]
+  targets    Target[]
+  Investment Investment[]
 
   @@map("users")
 }
 
 model Account {
-  id            String  @id @default(uuid())
+  id            String       @id @default(uuid())
   bank          String
   branch        String
   accountNumber String
-  User          User?   @relation(fields: [userId], references: [id])
+  User          User?        @relation(fields: [userId], references: [id])
   userId        String?
+  Investment    Investment[]
 
   @@map("accounts")
 }
 
 model Target {
-  id     String  @id @default(uuid())
-  name   String
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String?
+  id         String       @id @default(uuid())
+  name       String
+  User       User?        @relation(fields: [userId], references: [id])
+  userId     String?
+  Investment Investment[]
 
   @@map("targets")
+}
+
+model Investment {
+  id              String    @id @default(uuid())
+  type            String
+  subtype         String
+  tax             String?
+  name            String?
+  quantity        Int?
+  applicationDate DateTime
+  redeemDate      DateTime?
+  hasLiquidity    Boolean
+  amount          Decimal
+  User            User?     @relation(fields: [userId], references: [id])
+  userId          String?
+  Account         Account?  @relation(fields: [accountId], references: [id])
+  accountId       String?
+  Target          Target?   @relation(fields: [targetId], references: [id])
+  targetId        String?
+
+  @@map("investments")
 }
