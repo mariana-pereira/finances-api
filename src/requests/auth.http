@@ -1,0 +1,21 @@
+### Create new user
+POST http://localhost:3333/auth/signup
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "12345",
+  "name": "test"
+}
+
+### Sign in as an existing user
+POST http://localhost:3333/auth/signin
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "12345"
+}
+
+### Get user info
+GET http://localhost:3333/users/me
