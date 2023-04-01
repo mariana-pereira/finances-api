@@ -1,0 +1,8 @@
+### Create new target
+POST http://localhost:3333/targets
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMzZiZmZjMy00MGQyLTQyNzMtOWZiNC05Mzc0YzI0OWVjZjUiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2ODAyMTM4OTEsImV4cCI6MTY4MDIxNDc5MX0.TlczIRgQHo9FGwdLO3UMqkI1ORVDyCLsPgcxNrYlZ2w
+
+{
+  "name": "Comprar casa"
+}
