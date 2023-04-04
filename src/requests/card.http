@@ -1,0 +1,11 @@
+### Create new account
+POST http://localhost:3333/cards
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGYwODE4NC05MGM3LTRjMzAtOTUxMi1lN2JmOWI5NjQwZDQiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2ODA2NDQxMzgsImV4cCI6MTY4MDY0NTAzOH0.M-fj0APxmsngKQQZIl_vVukRNeXBBOMKM7R-mMuLCg4
+
+{
+  "name": "Nubank",
+  "number": "497412646845",
+  "limit": 5456.58,
+  "expiry_day": "2022-12-08T19:54:07.637Z"
+}
