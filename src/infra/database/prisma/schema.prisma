@@ -21,6 +21,7 @@ model User {
   targets     Target[]
   Investment  Investment[]
   Transaction Transaction[]
+  Card        Card[]
 
   @@map("users")
 }
@@ -82,4 +83,16 @@ model Transaction {
   userId    String?
 
   @@map("transactions")
+}
+
+model Card {
+  id         String   @id @default(uuid())
+  name       String
+  number     String
+  limit      Decimal
+  expiry_day DateTime
+  User       User?    @relation(fields: [userId], references: [id])
+  userId     String?
+
+  @@map("cards")
 }
