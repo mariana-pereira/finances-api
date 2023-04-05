@@ -1,0 +1,13 @@
+### Create new transaction
+POST http://localhost:3333/transactions
+Content-Type: application/json
+Account: 31cd9404-9133-4053-8778-c8c0bf08822d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMzZiZmZjMy00MGQyLTQyNzMtOWZiNC05Mzc0YzI0OWVjZjUiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2ODA1NjQyODQsImV4cCI6MTY4MDU2NTE4NH0.ZFc6pLxeauzwRDU-Dho0QznHWME_fLz5WhH63nWHnMg
+
+{
+  "date": "2022-12-08T19:54:07.637Z",
+  "amount": 45.85,
+  "type": "incoming",
+  "category": "Salário",
+  "source": "Avanade"
+}
