@@ -1,0 +1,11 @@
+### Create new account transaction
+POST http://localhost:3333/card-transactions
+Content-Type: application/json
+Card: a04b2b21-2652-410b-90be-0ebbb5f40122
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYmVhMDliNi04Y2I4LTQ1YjItYTYyZS0yMjU2MzY3NDBjMDQiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2ODA5NzgzMjgsImV4cCI6MTY4MDk3OTIyOH0.OdSeYmY2o_0jwds5o6IGz5QOmrbWJIw2Yg6_MTI6cik
+
+{
+  "date": "2022-12-08T19:54:07.637Z",
+  "amount": 45.85,
+  "type": "incoming"
+}
