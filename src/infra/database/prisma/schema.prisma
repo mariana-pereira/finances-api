@@ -11,17 +11,18 @@ datasource db {
 }
 
 model User {
-  id          String               @id @default(uuid())
-  name        String
-  email       String               @unique
-  password    String
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt
-  accounts    Account[]
-  targets     Target[]
-  Investment  Investment[]
-  Transaction AccountTransaction[]
-  Card        Card[]
+  id              String               @id @default(uuid())
+  name            String
+  email           String               @unique
+  password        String
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  accounts        Account[]
+  targets         Target[]
+  Investment      Investment[]
+  Transaction     AccountTransaction[]
+  Card            Card[]
+  CardTransaction CardTransaction[]
 
   @@map("users")
 }
@@ -85,13 +86,27 @@ model AccountTransaction {
 }
 
 model Card {
-  id         String   @id @default(uuid())
-  name       String
-  number     String
-  limit      Decimal
-  expiry_day DateTime
-  User       User?    @relation(fields: [userId], references: [id])
-  userId     String?
+  id              String            @id @default(uuid())
+  name            String
+  number          String
+  limit           Decimal
+  expiry_day      DateTime
+  User            User?             @relation(fields: [userId], references: [id])
+  userId          String?
+  CardTransaction CardTransaction[]
 
   @@map("cards")
+}
+
+model CardTransaction {
+  id     String   @id @default(uuid())
+  date   DateTime
+  amount Decimal
+  type   String
+  Card   Card?    @relation(fields: [cardId], references: [id])
+  cardId String?
+  User   User?    @relation(fields: [userId], references: [id])
+  userId String?
+
+  @@map("card-transactions")
 }
