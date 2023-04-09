@@ -7,8 +7,8 @@ import { PrismaModule } from './infra/database/prisma/prisma.module';
 import { AccountModule } from './application/modules/account.module';
 import { TargetModule } from './application/modules/target.module';
 import { InvestmentsModule } from './application/modules/investment.module';
-import { TransactionModule } from './application/modules/transaction.module';
 import { CardModule } from './application/modules/card.module';
+import { AccountTransactionModule } from './application/modules/account-transaction.module';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { CardModule } from './application/modules/card.module';
     AccountModule,
     TargetModule,
     InvestmentsModule,
-    TransactionModule,
+    AccountTransactionModule,
     CardModule,
   ],
 })

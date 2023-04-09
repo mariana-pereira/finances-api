@@ -11,30 +11,30 @@ datasource db {
 }
 
 model User {
-  id          String        @id @default(uuid())
+  id          String               @id @default(uuid())
   name        String
-  email       String        @unique
+  email       String               @unique
   password    String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
   accounts    Account[]
   targets     Target[]
   Investment  Investment[]
-  Transaction Transaction[]
+  Transaction AccountTransaction[]
   Card        Card[]
 
   @@map("users")
 }
 
 model Account {
-  id            String        @id @default(uuid())
+  id            String               @id @default(uuid())
   bank          String
   branch        String
   accountNumber String
-  User          User?         @relation(fields: [userId], references: [id])
+  User          User?                @relation(fields: [userId], references: [id])
   userId        String?
   Investment    Investment[]
-  Transaction   Transaction[]
+  Transaction   AccountTransaction[]
 
   @@map("accounts")
 }
@@ -70,19 +70,18 @@ model Investment {
   @@map("investments")
 }
 
-model Transaction {
+model AccountTransaction {
   id        String   @id @default(uuid())
   date      DateTime
   amount    Decimal
   type      String
   category  String
-  source    String
   Account   Account? @relation(fields: [accountId], references: [id])
   accountId String?
   User      User?    @relation(fields: [userId], references: [id])
   userId    String?
 
-  @@map("transactions")
+  @@map("account-transactions")
 }
 
 model Card {

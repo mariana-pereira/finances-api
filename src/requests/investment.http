@@ -2,7 +2,7 @@
 ### Create new investment
 POST http://localhost:3333/investments
 Content-Type: application/json
-Account: 31cd9404-9133-4053-8778-c8c0bf08822d
+Account: 5740a921-cae8-4e36-94cd-b24d035d0517
 Target: 051fe50c-c834-4220-8acc-23154c36d18d
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMzZiZmZjMy00MGQyLTQyNzMtOWZiNC05Mzc0YzI0OWVjZjUiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2ODAyMTgwMTIsImV4cCI6MTY4MDIxODkxMn0.WPeiSTu9L3fn5uVLik5xBVz2EcWdO7Y_Ge6MNRZkW_g
 
