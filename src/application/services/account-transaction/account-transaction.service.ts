@@ -1,15 +1,15 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { CreateTransactionDto } from 'src/http/dtos/transaction/createTransaction.dto';
+import { CreateAccountTransactionDto } from 'src/http/dtos/account-transaction/createAccountTransaction.dto';
 import { PrismaService } from 'src/infra/database/prisma/prisma.service';
 
 @Injectable()
-export class TransactionService {
+export class AccountTransactionService {
   constructor(private prismaService: PrismaService) {}
 
   async createTransaction(
     userId: string,
     accountId: string,
-    data: CreateTransactionDto,
+    data: CreateAccountTransactionDto,
   ) {
     try {
       const accountExists = await this.prismaService.account.findFirst({
@@ -24,14 +24,15 @@ export class TransactionService {
     } catch (error) {
       console.log(error);
     }
-    const transaction = await this.prismaService.transaction.create({
-      data: {
-        userId,
-        accountId,
-        ...data,
-      },
-    });
+    const accountTransaction =
+      await this.prismaService.accountTransaction.create({
+        data: {
+          userId,
+          accountId,
+          ...data,
+        },
+      });
 
-    return transaction;
+    return accountTransaction;
   }
 }

@@ -1,0 +1,12 @@
+### Create new account transaction
+POST http://localhost:3333/account-transactions
+Content-Type: application/json
+Account: 5740a921-cae8-4e36-94cd-b24d035d0517
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGYwODE4NC05MGM3LTRjMzAtOTUxMi1lN2JmOWI5NjQwZDQiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE2ODA5NzYyMzksImV4cCI6MTY4MDk3NzEzOX0.kxKoicJC_HejEPBudqzoV4UMsow3We-qNlAdsBF-Nl4
+
+{
+  "date": "2022-12-08T19:54:07.637Z",
+  "amount": 45.85,
+  "type": "incoming",
+  "category": "Salário"
+}

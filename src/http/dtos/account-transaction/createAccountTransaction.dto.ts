@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsDateString, IsNumber } from 'class-validator';
 
-export class CreateTransactionDto {
+export class CreateAccountTransactionDto {
   @IsNotEmpty()
   @IsDateString()
   date: Date;
@@ -13,7 +13,4 @@ export class CreateTransactionDto {
   @IsNotEmpty()
   @IsString()
   category: string;
-  @IsString()
-  @IsNotEmpty()
-  source: string;
 }
