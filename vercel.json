@@ -17,5 +17,6 @@
         "DELETE",
       ]
     }
-  ]
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
