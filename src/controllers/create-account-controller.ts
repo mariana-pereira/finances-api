@@ -1,44 +1,16 @@
-import {
-  Body,
-  ConflictException,
-  Controller,
-  HttpCode,
-  Post,
-} from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-// import { AuthGuard } from '@nestjs/passport';
-// import { GetUser } from 'src/auth/decorators';
-// import { AccountService } from 'src/application/services/account/account.service';
-// import { CreateAccountDto } from 'src/http/dtos/account';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '../decorators/get-user.decorator';
+import { CreateAccountDto } from '../dtos/account/create-account.dto';
+import { AccountService } from '../services/account.service';
 
-//@UseGuards(AuthGuard('jwt'))
+@UseGuards(AuthGuard('jwt'))
 @Controller('accounts')
 export class AccountController {
-  constructor(private prisma: PrismaService) {}
+  constructor(private accountService: AccountService) {}
 
   @Post()
-  @HttpCode(201)
-  async handle(@Body() body: any) {
-    const { name, email, password } = body;
-
-    const userWithSameEmail = await this.prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
-
-    if (userWithSameEmail) {
-      throw new ConflictException(
-        'User with same e-mail address already exists.'
-      );
-    }
-
-    await this.prisma.user.create({
-      data: {
-        name,
-        email,
-        password,
-      },
-    });
+  createAccount(@GetUser('id') userId: string, @Body() data: CreateAccountDto) {
+    return this.accountService.createAccount(userId, data);
   }
 }
