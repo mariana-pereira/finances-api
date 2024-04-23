@@ -11,12 +11,24 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Account   Account[]
 
   @@map("users")
+}
+
+model Account {
+  id            String  @id @default(uuid())
+  bank          String
+  branch        String
+  accountNumber String
+  User          User?   @relation(fields: [userId], references: [id])
+  userId        String?
+
+  @@map("accounts")
 }
