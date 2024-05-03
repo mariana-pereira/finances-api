@@ -4,10 +4,11 @@ import { JwtStrategy } from '../auth/strategy';
 import { AuthService } from '../services/auth.service';
 import { SignInController } from 'src/http/controllers/sign-in.controller';
 import { SignUpController } from 'src/http/controllers/sign-up.controller';
+import { RegisterUserUseCase } from 'src/use-cases/register-user';
 
 @Module({
   imports: [JwtModule.register({})],
   controllers: [SignInController, SignUpController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, RegisterUserUseCase],
 })
 export class AuthModule {}
