@@ -1,10 +1,12 @@
+@baseUrl = http://localhost:3333
+
 ### Create new account
-POST http://localhost:3333/accounts
+POST {{baseUrl}}/accounts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTQzYTg3MS04YWM5LTRiMWUtYjJjNi00OWEzOGY1MmVmODQiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE3MTM4OTQzMDQsImV4cCI6MTcxMzg5NTIwNH0.ndDuVHq6mnoeRg552Nf8dAwTKFIKL-slUwqS2zzaSgI
 
 {
   "bank": "Nubank",
-  "branch": "12345",
+  "branch": 12345,
   "accountNumber": "123456"
 }

@@ -1,5 +1,7 @@
+@baseUrl = http://localhost:3333
+
 ### Create new user
-POST http://localhost:3333/auth/signup
+POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
@@ -9,7 +11,7 @@ Content-Type: application/json
 }
 
 ### Sign in as an existing user
-POST http://localhost:3333/auth/signin
+POST {{baseUrl}}/auth/signin
 Content-Type: application/json
 
 {
@@ -18,4 +20,4 @@ Content-Type: application/json
 }
 
 ### Get user info
-GET http://localhost:3333/users/me
+GET {{baseUrl}}/users/me

@@ -4,8 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import { Prisma } from '@prisma/client';
 
 import * as argon from 'argon2';
+import { UsersRepository } from 'src/repositories/users-repository';
 
-import { PrismaService } from 'src/services/prisma.service';
 
 interface RegisterUserUseCaseRequest {
   name: string
@@ -15,11 +15,7 @@ interface RegisterUserUseCaseRequest {
 
 @Injectable()
 export class RegisterUserUseCase {
-  constructor(
-    private prismaService: PrismaService,
-    private jwtService: JwtService,
-    private configService: ConfigService,
-  ) {}
+  constructor(private usersRepository: UsersRepository, private configService: ConfigService, private jwtService: JwtService,) {}
 
   async execute({
     name,
@@ -27,24 +23,18 @@ export class RegisterUserUseCase {
     password,
   }: RegisterUserUseCaseRequest) {
     try {
-      const userExists = await this.prismaService.user.findUnique({
-        where: {
-          email: email,
-        },
-      });
+      const userWithSameEmail = await this.usersRepository.findByEmail(email);
 
-      if (userExists) {
+      if (userWithSameEmail) {
         throw new ForbiddenException('Credentials already taken.');
       }
 
       const passwordHash = await argon.hash(password);
 
-      const user = await this.prismaService.user.create({
-        data: {
-          email,
-          password: passwordHash,
-          name,
-        },
+      const user = await this.usersRepository.create({
+        name,
+        email,
+        password: passwordHash,
       });
 
       return this.signToken(user.id, user.email);
