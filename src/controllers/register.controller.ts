@@ -4,8 +4,21 @@ import {
   Controller,
   HttpCode,
   Post,
+  UsePipes,
 } from '@nestjs/common';
+import { hash } from 'bcryptjs';
+import { z } from 'zod';
+
+import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe';
 import { PrismaService } from 'src/prisma/prisma.service';
+
+const registerBodySchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+});
+
+type RegisterBodySchema = z.infer<typeof registerBodySchema>
 
 @Controller('/auth')
 export class RegisterController {
@@ -13,7 +26,8 @@ export class RegisterController {
 
   @Post('/signup')
   @HttpCode(201)
-  async handle(@Body() body: any) {
+  @UsePipes(new ZodValidationPipe(registerBodySchema))
+  async handle(@Body() body: RegisterBodySchema) {
     const { name, email, password } = body;
 
     const userWithSameEmail = await this.prisma.user.findUnique({
@@ -28,11 +42,13 @@ export class RegisterController {
       );
     }
 
+    const hashedPassword = await hash(password, 8);
+
     await this.prisma.user.create({
       data: {
         name,
         email,
-        password,
+        password: hashedPassword,
       },
     });
   }
