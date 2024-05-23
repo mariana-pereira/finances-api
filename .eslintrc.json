@@ -1,0 +1,23 @@
+{
+  "extends": "@rocketseat/eslint-config/node",
+  "rules": {
+    "no-useless-constructor": "off",
+    "indent": [
+      "error",
+      2
+  ],
+  "linebreak-style": [
+      "error",
+      "unix"
+  ],
+  "quotes": [
+      "error",
+      "single"
+  ],
+  "semi": [
+      "error",
+      "always"
+  ],
+  "prettier/prettier": "off"
+  }
+}
