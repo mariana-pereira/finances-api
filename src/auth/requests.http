@@ -1,0 +1,18 @@
+### Register
+POST http://localhost:3333/auth/register
+Content-Type: application/json
+
+{
+    "name": "Mariana",
+    "email": "mariana@test.com",
+    "password": "test123"
+}
+
+### Authenticate
+POST http://localhost:3333/auth/signin
+Content-Type: application/json
+
+{
+    "email": "mariana@test.com",
+    "password": "test123"
+}
