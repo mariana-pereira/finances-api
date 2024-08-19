@@ -4,8 +4,10 @@ import {
   Controller,
   HttpCode,
   Post,
+  UnauthorizedException,
 } from '@nestjs/common';
-import { hash } from 'bcryptjs';
+import { JwtService } from '@nestjs/jwt';
+import { compare, hash } from 'bcryptjs';
 import { z } from 'zod';
 import { PrismaService } from '../prisma/prisma.service';
 
@@ -15,15 +17,25 @@ const registerBodySchema = z.object({
   password: z.string(),
 });
 
-type RegisterBodySchema = z.infer<typeof registerBodySchema>
+type RegisterBodySchema = z.infer<typeof registerBodySchema>;
+
+const authenticateBodySchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
+type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>;
 
 @Controller('/auth')
 export class AuthController {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private jwt: JwtService,
+  ) {}
 
   @Post('/register')
   @HttpCode(201)
-  async handle(@Body() body: RegisterBodySchema) {
+  async register(@Body() body: RegisterBodySchema) {
     const { name, email, password } = body;
 
     const userWithSameEmail = await this.prisma.user.findUnique({
@@ -47,5 +59,32 @@ export class AuthController {
         password: hashedPassword,
       },
     });
+  }
+
+  @Post('/signin')
+  async authenticate(@Body() body: AuthenticateBodySchema) {
+    const { email, password } = body;
+
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      throw new UnauthorizedException('User credentials do not match.');
+    }
+
+    const isPasswordValid = await compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('User credentials do not match.');
+    }
+
+    const accessToken = this.jwt.sign({ sub: user.id });
+
+    return {
+      access_token: accessToken,
+    };
   }
 }

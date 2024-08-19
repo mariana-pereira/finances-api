@@ -1,9 +1,0 @@
-### Add exercise
-POST http://localhost:3333/auth/register
-Content-Type: application/json
-
-{
-    "name": "Mariana",
-    "email": "mariana@test.com",
-    "password": "test123"
-}
