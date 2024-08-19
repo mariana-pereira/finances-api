@@ -5,10 +5,12 @@ import {
   HttpCode,
   Post,
   UnauthorizedException,
+  UsePipes,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcryptjs';
 import { z } from 'zod';
+import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
 import { PrismaService } from '../prisma/prisma.service';
 
 const registerBodySchema = z.object({
@@ -35,6 +37,7 @@ export class AuthController {
 
   @Post('/register')
   @HttpCode(201)
+  @UsePipes(new ZodValidationPipe(registerBodySchema))
   async register(@Body() body: RegisterBodySchema) {
     const { name, email, password } = body;
 
@@ -62,6 +65,7 @@ export class AuthController {
   }
 
   @Post('/signin')
+  @UsePipes(new ZodValidationPipe(authenticateBodySchema))
   async authenticate(@Body() body: AuthenticateBodySchema) {
     const { email, password } = body;
 
