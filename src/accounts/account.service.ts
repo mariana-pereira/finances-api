@@ -39,9 +39,15 @@ export class AccountService {
     return account;
   }
 
-  // async findAll() {
-  //   return this.prismaService.book.findMany();
-  // }
+  async findAll(user: UserPayload) {
+    const userId = user.sub;
+
+    return this.prismaService.account.findMany({
+      where: {
+        user_id: userId,
+      },
+    });
+  }
 
   // async update(id: string, data: BookDto) {
   //   const bookExists = await this.prismaService.book.findUnique({

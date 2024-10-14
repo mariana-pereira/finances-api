@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -32,5 +33,10 @@ export class AccountController {
     @CurrentUser() user: UserPayload,
   ) {
     return this.accountService.create(body, user);
+  }
+
+  @Get()
+  async findAll(@CurrentUser() user: UserPayload,) {
+    return this.accountService.findAll(user);
   }
 }
