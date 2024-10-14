@@ -1,10 +1,10 @@
 ### Create Account
 POST http://localhost:3333/accounts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ODY0OGI2Yi1mYjAyLTQzMTktODExYS1lYzc3NGFiZWIwOTYiLCJpYXQiOjE3MjQ4NTMxNDJ9.TEsl3U54d0wmCqryvxcV7SKylIs9yPgmoy2hiOT7KV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ODY0OGI2Yi1mYjAyLTQzMTktODExYS1lYzc3NGFiZWIwOTYiLCJpYXQiOjE3Mjg5MTUxMTZ9.YwvQxVXc5M-rbGt3q7FXo-lyohsioNE4oe0_yLTva34
 
 {
     "bank": "Nubank",
     "branch": "0001",
-    "account_number": "123456-7"
+    "account_number": "123456-8"
 }
