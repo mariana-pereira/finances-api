@@ -8,10 +8,23 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
+  id       String    @id @default(uuid())
   name     String
-  email    String @unique
+  email    String    @unique
   password String
+  accounts Account[]
 
   @@map("users")
+}
+
+model Account {
+  id             String @id @default(uuid())
+  bank           String
+  branch         String
+  account_number String
+
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+
+  @@map("accounts")
 }
