@@ -76,7 +76,7 @@ model Objective {
 model Investment {
   id              String    @id @default(uuid())
   type            String
-  tax_rate        Float
+  tax_rate        String
   amount          Float
   date            DateTime
   expiration_date DateTime?
