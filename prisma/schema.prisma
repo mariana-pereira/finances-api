@@ -8,11 +8,14 @@ datasource db {
 }
 
 model User {
-  id       String    @id @default(uuid())
-  name     String
-  email    String    @unique
-  password String
-  accounts Account[]
+  id              String            @id @default(uuid())
+  name            String
+  email           String            @unique
+  password        String
+  accounts        Account[]
+  Objective       Objective[]
+  Investment      Investment[]
+  CardTransaction CardTransaction[]
 
   @@map("users")
 }
@@ -23,8 +26,80 @@ model Account {
   branch         String
   account_number String
 
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
+  user        User          @relation(fields: [user_id], references: [id])
+  user_id     String
+  Transaction Transaction[]
+  Card        Card[]
+  Investment  Investment[]
 
   @@map("accounts")
+}
+
+model Transaction {
+  id     String   @id @default(uuid())
+  type   String
+  amount Float
+  date   DateTime
+
+  account    Account @relation(fields: [account_id], references: [id])
+  account_id String
+
+  @@map("transactions")
+}
+
+model Card {
+  id          String   @id @default(uuid())
+  name        String
+  card_number String
+  expiration  DateTime
+  emitter     String
+
+  account         Account           @relation(fields: [account_id], references: [id])
+  account_id      String
+  CardTransaction CardTransaction[]
+
+  @@map("cards")
+}
+
+model Objective {
+  id            String @id @default(uuid())
+  name          String
+  target_amount Float
+
+  user       User         @relation(fields: [user_id], references: [id])
+  user_id    String
+  Investment Investment[]
+
+  @@map("objectives")
+}
+
+model Investment {
+  id              String    @id @default(uuid())
+  type            String
+  tax_rate        String
+  amount          Float
+  date            DateTime
+  expiration_date DateTime?
+
+  user         User      @relation(fields: [user_id], references: [id])
+  user_id      String
+  account      Account   @relation(fields: [account_id], references: [id])
+  account_id   String
+  objective    Objective @relation(fields: [objective_id], references: [id])
+  objective_id String
+
+  @@map("investments")
+}
+
+model CardTransaction {
+  id      String   @id @default(uuid())
+  type    String
+  amount  Float
+  date    DateTime
+  card    Card     @relation(fields: [card_id], references: [id])
+  card_id String
+  user    User     @relation(fields: [user_id], references: [id])
+  user_id String
+
+  @@map("card_transactions")
 }
