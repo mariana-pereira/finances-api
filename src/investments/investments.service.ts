@@ -15,16 +15,6 @@ export class InvestmentsService {
   
       const userId = user.sub;
   
-      // const investmentExists = await this.prismaService.investment.findFirst({
-      //   where: {
-      //     : account_number,
-      //   },
-      // });
-  
-      // if (accountsExists) {
-      //   throw new Error('Account already exists.');
-      // }
-  
       const data = {
         type,
         tax_rate,
@@ -43,23 +33,32 @@ export class InvestmentsService {
       return investment;
     }
 
-  // async sumByObjective(objectiveId: string) {
-  //   const result = await this.prisma.investment.aggregate({
-  //     _sum: { amount: true },
-  //     where: { objectiveId },
-  //   });
-  //   return result._sum.amount ?? 0;
-  // }
+  async sumByAllObjectives() {
+  // Step 1: group investments by objective_id
+  const grouped = await this.prismaService.investment.groupBy({
+    by: ['objective_id'],
+    _sum: { amount: true },
+  });
 
-  // async sumByAllObjectives() {
-  //   const results = await this.prisma.investment.groupBy({
-  //     by: ['objectiveId'],
-  //     _sum: { amount: true },
-  //   });
+  if (grouped.length === 0) return [];
 
-  //   return results.map(r => ({
-  //     objectiveId: r.objectiveId,
-  //     total: r._sum.amount ?? 0,
-  //   }));
-  // }
+  // Step 2: fetch objectives
+  const objectiveIds = grouped.map(g => g.objective_id);
+
+  const objectives = await this.prismaService.objective.findMany({
+    where: { id: { in: objectiveIds } },
+    select: { id: true, name: true, target_amount: true },
+  });
+
+  // Step 3: merge sums with objective names
+  return grouped.map(g => {
+    const obj = objectives.find(o => o.id === g.objective_id);
+    return {
+      objectiveId: g.objective_id,
+      objectiveName: obj?.name ?? 'Unknown',
+      targetAmount: obj?.target_amount ?? 0,
+      total: g._sum.amount ?? 0,
+    };
+  });
+}
 }

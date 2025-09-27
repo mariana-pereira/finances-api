@@ -33,14 +33,8 @@ export class InvestmentsController {
       return this.investmentsService.create(body, user);
     }
 
-  // @Get('sum/:objectiveId')
-  // async getSumByObjective(@Param('objectiveId') objectiveId: string) {
-  //   const total = await this.investmentsService.sumByObjective(objectiveId);
-  //   return { objectiveId, total };
-  // }
-
-  // @Get('sum')
-  // async getSumByAllObjectives() {
-  //   return this.investmentsService.sumByAllObjectives();
-  // }
+  @Get('sum')
+  async getSumByAllObjectives() {
+    return this.investmentsService.sumByAllObjectives();
+  }
 }

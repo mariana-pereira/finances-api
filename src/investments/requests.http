@@ -13,7 +13,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGZmN2RkO
     "objective_id": "46e6beed-b4ba-4850-91ef-161dd4d88843"
 }
 
-### Get All investments
-# GET http://localhost:3333/investments
-# Content-Type: application/json
-# Authorization: Bearer 
+### Get total amount per objective
+GET http://localhost:3333/investments/sum
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGZmN2RkOS1iYzI4LTQwNGItOGE1Ni1mZTVkODQ0NDhiNTgiLCJpYXQiOjE3NTg5ODA2MTl9.jH4QzIwZHklMwpqJTJyVWp8mtGQFSgQOkfzETcbrW3Y
