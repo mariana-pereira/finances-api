@@ -1,0 +1,19 @@
+### Create Account
+POST http://localhost:3333/investments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGZmN2RkOS1iYzI4LTQwNGItOGE1Ni1mZTVkODQ0NDhiNTgiLCJpYXQiOjE3NTg5ODA2MTl9.jH4QzIwZHklMwpqJTJyVWp8mtGQFSgQOkfzETcbrW3Y
+
+{
+    "type": "CDB",
+    "tax_rate": "110% CDI",
+    "amount": 100,
+    "date": "2025-01-03T03:00:00.000Z",
+    "expiration_date": "2025-01-03T03:00:00.000Z",
+    "account_id": "d742f8bc-7abc-4a8f-a8ae-588e42a13010",
+    "objective_id": "46e6beed-b4ba-4850-91ef-161dd4d88843"
+}
+
+### Get total amount per objective
+GET http://localhost:3333/investments/sum
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGZmN2RkOS1iYzI4LTQwNGItOGE1Ni1mZTVkODQ0NDhiNTgiLCJpYXQiOjE3NTg5ODA2MTl9.jH4QzIwZHklMwpqJTJyVWp8mtGQFSgQOkfzETcbrW3Y
