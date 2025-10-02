@@ -1,10 +1,10 @@
-import { Controller, Post, Body, Get, Param, UseGuards } from '@nestjs/common';
-import { InvestmentsService } from './investments.service';
+import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { z } from 'zod';
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
 import { CurrentUser } from '../auth/current-user-decorator';
 import { UserPayload } from '../auth/jwt.strategy';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { InvestmentService } from './investment.service';
 
 const investmentBodySchema = z.object({
   type: z.string(),
@@ -22,8 +22,8 @@ export type InvestmentBodySchema = z.infer<typeof investmentBodySchema>;
 
 @Controller('/investments')
 @UseGuards(JwtAuthGuard)
-export class InvestmentsController {
-  constructor(private readonly investmentsService: InvestmentsService) {}
+export class InvestmentController {
+  constructor(private readonly investmentsService: InvestmentService) {}
 
   @Post()
     async create(
