@@ -8,6 +8,7 @@ import { PrismaService } from './prisma/prisma.service';
 import { InvestmentModule } from './investments/investment.module';
 import { ObjectiveModule } from './objectives/objective.module';
 import { TransactionModule } from './transactions/transaction.module';
+import { CardModule } from './cards/card.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { TransactionModule } from './transactions/transaction.module';
     AccountModule,
     InvestmentModule,
     ObjectiveModule,
-    TransactionModule
+    TransactionModule,
+    CardModule
   ],
   controllers: [AuthController],
   providers: [PrismaService],
