@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { envSchema } from './env';
 import { PrismaService } from './prisma/prisma.service';
 import { InvestmentModule } from './investments/investment.module';
+import { ObjectiveModule } from './objectives/objective.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { InvestmentModule } from './investments/investment.module';
     }),
     AuthModule,
     AccountModule,
-    InvestmentModule
+    InvestmentModule,
+    ObjectiveModule
   ],
   controllers: [AuthController],
   providers: [PrismaService],
