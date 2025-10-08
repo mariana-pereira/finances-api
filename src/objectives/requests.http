@@ -1,0 +1,14 @@
+### Create Objective
+POST http://localhost:3333/objectives
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMmNiMzE2Ni05MTMxLTQyYmYtYWZiOS0wMzYyNGVjNzZlOTQiLCJpYXQiOjE3NTk4NzY4ODV9.p6dDh8oADrxpPi7jwx146p-oE4L3FNgs8jOrQ0Nijiw
+
+{
+    "name": "Teste",
+    "target_amount": 500
+}
+
+### Get All objectives
+GET http://localhost:3333/objectives
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMmNiMzE2Ni05MTMxLTQyYmYtYWZiOS0wMzYyNGVjNzZlOTQiLCJpYXQiOjE3NTk4NzY4ODV9.p6dDh8oADrxpPi7jwx146p-oE4L3FNgs8jOrQ0Nijiw
