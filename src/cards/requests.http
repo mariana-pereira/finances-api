@@ -1,0 +1,17 @@
+### Create Card
+POST http://localhost:3333/cards
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMmNiMzE2Ni05MTMxLTQyYmYtYWZiOS0wMzYyNGVjNzZlOTQiLCJpYXQiOjE3NTk4NzY4ODV9.p6dDh8oADrxpPi7jwx146p-oE4L3FNgs8jOrQ0Nijiw
+
+{
+    "name": "Teste",
+    "card_number": "0001",
+    "expiration": "2025-01-03T03:00:00.000Z",
+    "emitter": "teste",
+    "account_id": "407025bf-4b31-42da-a70d-28a365dfc39b"
+}
+
+### Get All cards
+GET http://localhost:3333/cards
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMmNiMzE2Ni05MTMxLTQyYmYtYWZiOS0wMzYyNGVjNzZlOTQiLCJpYXQiOjE3NTk4NzY4ODV9.p6dDh8oADrxpPi7jwx146p-oE4L3FNgs8jOrQ0Nijiw

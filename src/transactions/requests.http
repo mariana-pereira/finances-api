@@ -1,0 +1,12 @@
+### Create Account
+POST http://localhost:3333/transactions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMmNiMzE2Ni05MTMxLTQyYmYtYWZiOS0wMzYyNGVjNzZlOTQiLCJpYXQiOjE3NTk4Nzg4MjZ9.p-rwuNMw8tdS5gnLWSZqHqEmRDy2-Xs2Ar7LYplln5g
+
+{
+    "type": "Teste",
+    "amount": 20,
+    "date": "2025-01-03T03:00:00.000Z",
+    "account_id": "407025bf-4b31-42da-a70d-28a365dfc39b"
+}
+

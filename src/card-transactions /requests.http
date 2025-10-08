@@ -1,0 +1,12 @@
+### Create Card Transaction
+POST http://localhost:3333/card-transactions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMmNiMzE2Ni05MTMxLTQyYmYtYWZiOS0wMzYyNGVjNzZlOTQiLCJpYXQiOjE3NTk4Nzg4MjZ9.p-rwuNMw8tdS5gnLWSZqHqEmRDy2-Xs2Ar7LYplln5g
+
+{
+    "type": "Teste",
+    "amount": 20,
+    "date": "2025-01-03T03:00:00.000Z",
+    "card_id": "c7305edc-20fc-4a5c-9f78-2d615ec50f50"
+}
+

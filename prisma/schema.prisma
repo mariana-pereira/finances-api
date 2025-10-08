@@ -16,6 +16,7 @@ model User {
   Objective       Objective[]
   Investment      Investment[]
   CardTransaction CardTransaction[]
+  Card            Card[]
 
   @@map("users")
 }
@@ -54,6 +55,8 @@ model Card {
   expiration  DateTime
   emitter     String
 
+  user            User              @relation(fields: [user_id], references: [id])
+  user_id         String
   account         Account           @relation(fields: [account_id], references: [id])
   account_id      String
   CardTransaction CardTransaction[]
@@ -98,8 +101,8 @@ model CardTransaction {
   date    DateTime
   card    Card     @relation(fields: [card_id], references: [id])
   card_id String
-  user    User     @relation(fields: [user_id], references: [id])
-  user_id String
+  User    User?    @relation(fields: [userId], references: [id])
+  userId  String?
 
   @@map("card_transactions")
 }
