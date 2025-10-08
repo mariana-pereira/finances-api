@@ -9,6 +9,7 @@ import { InvestmentModule } from './investments/investment.module';
 import { ObjectiveModule } from './objectives/objective.module';
 import { TransactionModule } from './transactions/transaction.module';
 import { CardModule } from './cards/card.module';
+import { CardTransactionModule } from './card-transactions /card-transaction.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { CardModule } from './cards/card.module';
     InvestmentModule,
     ObjectiveModule,
     TransactionModule,
-    CardModule
+    CardModule,
+    CardTransactionModule
   ],
   controllers: [AuthController],
   providers: [PrismaService],
