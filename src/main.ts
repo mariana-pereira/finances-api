@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-  origin: ['https://finances-ijll339pk-marianapereiras-projects.vercel.app',
+  origin: ['https://finances-web-tau.vercel.app',
     'http://localhost:3000'
   ],
   credentials: true,
