@@ -10,23 +10,15 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcryptjs';
 import { z } from 'zod';
-import { PrismaService } from '../../prisma/prisma.service';
-import { ZodValidationPipe } from '../../pipes/zod-validation-pipe';
+import { PrismaService } from '../../../../prisma/prisma.service';
+import { ZodValidationPipe } from '../../../../pipes/zod-validation-pipe';
+import { loginSchema } from '../schemas/login.schema';
+import { registerSchema } from '../schemas/register.schema';
 
-const registerBodySchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  password: z.string(),
-});
 
-type RegisterBodySchema = z.infer<typeof registerBodySchema>;
+type RegisterBodySchema = z.infer<typeof registerSchema>;
 
-const authenticateBodySchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
-
-type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>;
+type AuthenticateBodySchema = z.infer<typeof loginSchema>;
 
 @Controller('/auth')
 export class AuthController {
@@ -37,7 +29,7 @@ export class AuthController {
 
   @Post('/register')
   @HttpCode(201)
-  @UsePipes(new ZodValidationPipe(registerBodySchema))
+  @UsePipes(new ZodValidationPipe(registerSchema))
   async register(@Body() body: RegisterBodySchema) {
     const { name, email, password } = body;
 
@@ -65,7 +57,7 @@ export class AuthController {
   }
 
   @Post('/signin')
-  @UsePipes(new ZodValidationPipe(authenticateBodySchema))
+  @UsePipes(new ZodValidationPipe(loginSchema))
   async authenticate(@Body() body: AuthenticateBodySchema) {
     const { email, password } = body;
 
