@@ -2,7 +2,9 @@ import { UserRepository } from '../../domain/repositories/user.repository';
 import { RegisterDto } from '../dtos/register.dto';
 import { User } from '../../domain/entities/user.entity';
 import { BcryptHasher } from '../../infra/security/bcrypt-hasher.service';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class RegisterUseCase {
   constructor(
     private users: UserRepository,

@@ -6,11 +6,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { z } from 'zod';
-import { CurrentUser } from '../auth/current-user-decorator';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { UserPayload } from '../auth/jwt.strategy';
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
 import { CardService } from './card.service';
+import { UserPayload } from '../modules/auth/infra/security/jwt.strategy';
+import { CurrentUser } from '../modules/auth/presentation/decorators/current-user-decorator';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import { ZodValidationPipe } from '../common/pipes/zod-validation-pipe';
 
 const cardBodySchema = z.object({
   name: z.string(),

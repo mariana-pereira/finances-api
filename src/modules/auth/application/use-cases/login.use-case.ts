@@ -2,7 +2,9 @@ import { UserRepository } from '../../domain/repositories/user.repository';
 import { LoginDto } from '../dtos/login.dto';
 import { BcryptHasher } from '../../infra/security/bcrypt-hasher.service';
 import { JwtTokenService } from '../../infra/security/jwt-token.service';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class LoginUseCase {
   constructor(
     private users: UserRepository,

@@ -4,12 +4,12 @@ Content-Type: application/json
 
 {
     "name": "Mariana",
-    "email": "mariana2@test.com",
+    "email": "mariana3@test.com",
     "password": "test123"
 }
 
 ### Authenticate
-POST http://localhost:3333/auth/signin
+POST http://localhost:3333/auth/login
 Content-Type: application/json
 
 {

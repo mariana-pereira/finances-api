@@ -9,7 +9,7 @@ import { TransactionModule } from './transactions/transaction.module';
 import { CardModule } from './cards/card.module';
 import { CardTransactionModule } from './card-transactions /card-transaction.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { AuthController } from './modules/auth/auth.controller';
+import { AuthController } from './modules/auth/presentation/controllers/auth.controller';
 
 @Module({
   imports: [
