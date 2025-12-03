@@ -1,0 +1,20 @@
+### Create Account
+POST http://localhost:3333/accounts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGZmN2RkOS1iYzI4LTQwNGItOGE1Ni1mZTVkODQ0NDhiNTgiLCJlbWFpbCI6Im1hcmlhbmFAdGVzdC5jb20iLCJpYXQiOjE3NjQ4MDM5NzJ9.hb_DDYAXEiKDA_HOwc503HVAp9ZBUXAaOPLbbwBFZSk
+
+{
+    "bank": "Nubank",
+    "branch": "0001",
+    "account_number": "123456-8"
+}
+
+### Get All Accounts
+GET http://localhost:3333/accounts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGZmN2RkOS1iYzI4LTQwNGItOGE1Ni1mZTVkODQ0NDhiNTgiLCJlbWFpbCI6Im1hcmlhbmFAdGVzdC5jb20iLCJpYXQiOjE3NjQ4MDM5NzJ9.hb_DDYAXEiKDA_HOwc503HVAp9ZBUXAaOPLbbwBFZSk
+
+### Get Account
+GET http://localhost:3333/accounts/407025bf-4b31-42da-a70d-28a365dfc39b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxOGZmN2RkOS1iYzI4LTQwNGItOGE1Ni1mZTVkODQ0NDhiNTgiLCJlbWFpbCI6Im1hcmlhbmFAdGVzdC5jb20iLCJpYXQiOjE3NjQ4MDM5NzJ9.hb_DDYAXEiKDA_HOwc503HVAp9ZBUXAaOPLbbwBFZSk

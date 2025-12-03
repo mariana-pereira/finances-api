@@ -35,7 +35,6 @@ import { UserRepository } from './domain/repositories/user.repository';
     RegisterUseCase,
     LoginUseCase,
     GetCurrentUserUseCase,
-
     JwtStrategy,
 
     {
