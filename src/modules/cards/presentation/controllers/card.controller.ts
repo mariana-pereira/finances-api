@@ -25,6 +25,7 @@ export class CardController {
   ) {
     return this.createCardUseCase.execute({
       ...body,
+      expiration: new Date(body.expiration),
       user_id: user.sub,
     });
   }
