@@ -16,6 +16,7 @@ export class RegisterUseCase {
     if (existing) throw new Error('Email already in use');
 
     const hash = await this.hasher.hash(input.password);
+    // const id = crypto.randomUUID();
     const user = new User(crypto.randomUUID(), input.name, input.email.toLowerCase(), hash);
     return await this.users.create(user);
   }
