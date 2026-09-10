@@ -5,9 +5,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { z } from 'zod';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
 import { TransactionService } from './transaction.service';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import { ZodValidationPipe } from '../common/pipes/zod-validation-pipe';
 
 const transactionBodySchema = z.object({
   type: z.string(),
