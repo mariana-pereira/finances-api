@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { UserPayload } from '../auth/jwt.strategy';
 import { InvestmentBodySchema } from './investment.controller';
+import { UserPayload } from '../modules/auth/infra/security/jwt.strategy';
 
 @Injectable()
 export class InvestmentService {

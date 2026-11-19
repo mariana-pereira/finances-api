@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AccountModule } from './accounts/account.module';
-import { AuthController } from './auth/auth.controller';
-import { AuthModule } from './auth/auth.module';
 import { envSchema } from './env';
 import { PrismaService } from './prisma/prisma.service';
 import { InvestmentModule } from './investments/investment.module';
 import { ObjectiveModule } from './objectives/objective.module';
 import { TransactionModule } from './transactions/transaction.module';
-import { CardModule } from './cards/card.module';
 import { CardTransactionModule } from './card-transactions /card-transaction.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { AuthController } from './modules/auth/presentation/controllers/auth.controller';
+import { AccountModule } from './modules/accounts/account.module';
+import { CardModule } from './modules/cards/card.module';
 
 @Module({
   imports: [
